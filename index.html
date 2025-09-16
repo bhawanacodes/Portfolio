@@ -33,23 +33,25 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navMain">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-          <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#resume">Experience</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
-        </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#resume">Experience</a></li>
+        <li class="nav-item"><a class="nav-link px-3" href="#contact">Contact</a></li>
+      </ul>
 
-        <div class="d-none d-lg-flex align-items-center gap-2 ms-3">
-          <a class="btn btn-sm btn-outline-secondary rounded-pill" href="#contact" title="Email" rel="noopener"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-          <a class="btn btn-sm btn-outline-secondary rounded-pill" href="tel:+9779815633640" title="Phone" rel="noopener"><i class="fa-solid fa-phone" aria-hidden="true"></i></a>
-          <!-- Theme toggle -->
-          <button id="themeBtn" class="btn btn-sm btn-light rounded-pill ms-2" title="Toggle dark/light" aria-pressed="false">
-            <i id="themeIcon" class="fa-solid fa-moon" aria-hidden="true"></i>
-            <span class="visually-hidden">Toggle theme</span>
-          </button>
-        </div>
+      <!-- Contact buttons (desktop only) -->
+      <div class="d-none d-lg-flex align-items-center gap-2 ms-3">
+        <a class="btn btn-sm btn-outline-secondary rounded-pill" href="#contact" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a class="btn btn-sm btn-outline-secondary rounded-pill" href="tel:+9779815633640" title="Phone"><i class="fa-solid fa-phone"></i></a>
       </div>
+    </div>
+
+    <!--  Theme toggle outside collapse (always visible) -->
+      <button id="themeBtn" class="btn btn-sm btn-light rounded-pill ms-2" title="Toggle dark/light" aria-pressed="false">
+        <i id="themeIcon" class="fa-solid fa-moon"></i>
+        <span class="visually-hidden">Toggle theme</span>
+      </button>
     </div>
   </nav>
   <div class="navbar-spacer" aria-hidden="true"></div>
@@ -66,7 +68,7 @@
 
         <div class="mt-3 d-flex flex-wrap gap-2 cta">
           <a class="btn btn-primary btn-sm" href="#contact"><i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Contact</a>
-          <a class="btn btn-outline-secondary btn-sm" href="assets/CV.pdf"_blank" rel="noopener"><i class="fa-solid fa-download me-2" aria-hidden="true"></i>Download CV</a>
+          <a class="btn btn-outline-secondary btn-sm" href="assets/CV.pdf" target= "_blank" rel="noopener"><i class="fa-solid fa-download me-2" aria-hidden="true"></i>Download CV</a>
           <a class="btn btn-outline-secondary btn-sm" href="https://github.com/bhawanacodes" target="_blank" rel="noopener"><i class="fa-brands fa-github me-2" aria-hidden="true"></i>GitHub</a>
         </div>
 
@@ -155,7 +157,7 @@
     </section>
 
     <!-- SKILLS -->
-   <section id="skills" aria-label="About">
+   <section id="skills" aria-label="Skills">
    <div class="row g-3 mt-3">
      <h2 class="section-title">Skills</h2>
   <div class="col-md-6 reveal">
@@ -257,7 +259,7 @@
           <div class="card-glass contact-card">
             <!-- kept Web3Forms as in your original. If you prefer Formspree, replace action with Formspree endpoint. -->
             <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
-              <input type="hidden" name="access_key" value="53850583-f0df-4410-b578-7dcc38204284">
+              <input type="hidden" name="access_key" value="13751df2-176c-4362-8898-3541d38e04fa">
               <div class="mb-3">
                 <label class="form-label">Full name</label>
                 <input name="fullname" required class="form-control" />
@@ -277,7 +279,8 @@
                 <textarea name="message" rows="4" required class="form-control"></textarea>
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Send message</button>
+                <button type="submit" class="btn btn-primary btn-sm gradient-btn">
+                  <i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Send message</button>
               </div>
               <p id="formStatus" class="mt-2 small muted visually-hidden" role="status" aria-live="polite">Thanks — your message was sent.</p>
             </form>
@@ -302,7 +305,7 @@
               <ul class="list-unstyled">
                 <li><a href="#resume" class="link">Experience</a></li>
                 <li><a href="#skills" class="link">Skills</a></li>
-                <li><a href="assets/CV.pdf"_blank" rel="noopener" class="link">Download CV</a></li>
+                <li><a href="assets/CV.pdf"target="_blank" rel="noopener" class="link">Download CV</a></li>
               </ul>
             </div>
           </div>
@@ -325,7 +328,7 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="script.js"></script>
   <script>
     const q = s => document.querySelector(s);
     const qAll = s => Array.from(document.querySelectorAll(s));
@@ -392,19 +395,40 @@
     })();
 
     
-    // ---------- contact form optimistic message ----------
-    (function contactForm() {
-      const contactForm = q('#contactForm');
-      const statusEl = q('#formStatus');
-      if (!contactForm || !statusEl) return;
-      contactForm.addEventListener('submit', (ev) => {
-        statusEl.classList.remove('visually-hidden');
-        statusEl.textContent = 'Sending…';
-        setTimeout(() => {
-          statusEl.textContent = 'Thanks — your message was sent.';
-        }, 900);
-      });
-    })();
+const contactForm = document.querySelector('#contactForm');
+const statusEl = document.querySelector('#formStatus');
+
+contactForm.addEventListener('submit', async (ev) => {
+  ev.preventDefault();
+
+  if (!contactForm.checkValidity()) {
+    contactForm.reportValidity();
+    return;
+  }
+
+  statusEl.classList.remove('visually-hidden');
+  statusEl.textContent = 'Sending…';
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm)
+    });
+    const result = await response.json();
+
+    if (result.success) {
+      statusEl.textContent = 'Thanks — your message was sent.';
+      contactForm.reset();
+
+    } else {
+      statusEl.textContent = 'Oops! Something went wrong.';
+    }
+  } catch (err) {
+    statusEl.textContent = 'Network error. Try again later.';
+    console.error(err);
+  }
+});
+
 
     // ---------- close mobile nav after clicking link ----------
     (function closeMobileNavOnClick() {
